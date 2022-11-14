@@ -2856,10 +2856,13 @@ var DeployStatus;
     DeployStatus["Canceled"] = "canceled";
 })(DeployStatus || (DeployStatus = {}));
 const checkDeployStatus = (apiKey, serviceId, deployId) => __awaiter(void 0, void 0, void 0, function* () {
-    const headers = new Headers();
-    headers.append("Authorization", `Bearer ${apiKey}`);
-    headers.append("Accept", "application/json");
-    const result = yield fetch(`https://api.render.com/v1/services/${serviceId}/deploys/${deployId}`, { method: "GET" });
+    const result = yield fetch(`https://api.render.com/v1/services/${serviceId}/deploys/${deployId}`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${apiKey}`,
+            Accept: "application/json",
+        },
+    });
     if (result.status !== 200) {
         throw new Error();
     }
@@ -2900,13 +2903,12 @@ var deploy_current_ref_awaiter = (undefined && undefined.__awaiter) || function 
     });
 };
 const deployCurrentRef = (apiKey, deployHookURL) => deploy_current_ref_awaiter(void 0, void 0, void 0, function* () {
-    const headers = new Headers();
-    headers.append("Authorization", `Bearer ${apiKey}`);
-    headers.append("Content-Type", "application/json");
-    headers.append("Accept", "application/json");
     const result = yield fetch(`${deployHookURL}?ref=${process.env.GITHUB_SHA}`, {
         method: "POST",
-        headers,
+        headers: {
+            Authorization: `Bearer ${apiKey}`,
+            Accept: "application/json",
+        },
     });
     if (result.status !== 200) {
         throw new Error(`Something went wrong when trying to create a new deployment: HTTP status code ${result.status}, ${yield result.text()}`);
@@ -2964,7 +2966,7 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
 
 const run = () => src_awaiter(void 0, void 0, void 0, function* () {
     var _a;
-    core.info(`Starting Deploy to Render workflow v0.0.4`);
+    core.info(`Starting Deploy to Render workflow v0.0.5`);
     try {
         const config = loadConfig();
         core.info(`Starting deployment of reference ${process.env.GITHUB_SHA} for service ${config.serviceId}`);
