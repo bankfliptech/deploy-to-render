@@ -2878,7 +2878,7 @@ const loadConfig = () => {
     if (!apiKey) {
         throw new Error("The API Key is missing from the workflow file.");
     }
-    const serviceId = core.getInput("apiKserviceIdey");
+    const serviceId = core.getInput("serviceId");
     if (!serviceId) {
         throw new Error("The Service ID is missing from the workflow file.");
     }
@@ -2931,7 +2931,7 @@ const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 const waitForDeployment = (apiKey, serviceId, deployId) => wait_for_deployment_awaiter(void 0, void 0, void 0, function* () {
     const timeout = setTimeout(() => {
         throw new Error("Timed out while waiting for deployment to finish");
-    }, 10 * 60 * 60 * 1000); // 10 minutes
+    }, 10 * 60 * 1000); // 10 minutes
     let status = yield checkDeployStatus(apiKey, serviceId, deployId);
     const inProgressStatusCodes = [
         DeployStatus.Created,
@@ -2964,7 +2964,7 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
 
 const run = () => src_awaiter(void 0, void 0, void 0, function* () {
     var _a;
-    core.info(`Starting Deploy to Render workflow`);
+    core.info(`Starting Deploy to Render workflow v0.0.4`);
     try {
         const config = loadConfig();
         core.info(`Starting deployment of reference ${process.env.GITHUB_SHA} for service ${config.serviceId}`);
