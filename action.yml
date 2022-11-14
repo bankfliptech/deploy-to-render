@@ -2,7 +2,7 @@ name: 'Render Deployment'
 author: 'Bankflip <tech@bankflip.io>'
 description: 'A GitHub Action to trigger and track deployment in Render'
 inputs:
-  deploy-hook-url:
+  deployHookURL:
     description: 'The deploy hook url for the service you want to deploy'
     required: true
   apiKey:
