@@ -16,7 +16,7 @@ export const deployCurrentRef = async (apiKey: string, deployHookURL: string) =>
     );
   }
 
-  const data = (await result.json()) as { id: string; status: string };
+  const data = (await result.json()) as { deploy: { id: string } };
 
-  return data.id;
+  return data.deploy.id;
 };
