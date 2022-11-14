@@ -6,7 +6,7 @@ const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 export const waitForDeployment = async (apiKey: string, serviceId: string, deployId: string) => {
   const timeout = setTimeout(() => {
     throw new Error("Timed out while waiting for deployment to finish");
-  }, 10 * 60 * 1000); // 10 minutes
+  }, 30 * 60 * 1000); // 10 minutes
 
   let status = await checkDeployStatus(apiKey, serviceId, deployId);
   const inProgressStatusCodes = [
