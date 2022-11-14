@@ -1,3 +1,5 @@
+import fetch from "node-fetch";
+
 export enum DeployStatus {
   Created = "created",
   BuildInProgress = "build_in_progress",

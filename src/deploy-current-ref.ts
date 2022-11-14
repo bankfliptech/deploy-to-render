@@ -1,3 +1,5 @@
+import fetch from "node-fetch";
+
 export const deployCurrentRef = async (apiKey: string, deployHookURL: string) => {
   const result = await fetch(`${deployHookURL}?ref=${process.env.GITHUB_SHA}`, {
     method: "POST",
