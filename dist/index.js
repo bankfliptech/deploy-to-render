@@ -9977,7 +9977,7 @@ var deploy_current_ref_awaiter = (undefined && undefined.__awaiter) || function 
 };
 
 const deployCurrentRef = (apiKey, deployHookURL) => deploy_current_ref_awaiter(void 0, void 0, void 0, function* () {
-    const result = yield fetch(`${deployHookURL}?ref=${process.env.GITHUB_SHA}`, {
+    const result = yield fetch(`${deployHookURL}&ref=${process.env.GITHUB_SHA}`, {
         method: "POST",
         headers: {
             Authorization: `Bearer ${apiKey}`,
@@ -10040,7 +10040,7 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
 
 const run = () => src_awaiter(void 0, void 0, void 0, function* () {
     var _a;
-    core.info(`Starting Deploy to Render workflow v0.0.6`);
+    core.info(`Starting Deploy to Render workflow v0.0.7`);
     try {
         const config = loadConfig();
         core.info(`Starting deployment of reference ${process.env.GITHUB_SHA} for service ${config.serviceId}`);
