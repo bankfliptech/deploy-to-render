@@ -4,25 +4,29 @@ import { loadConfig } from "./config";
 import { deployCurrentRef } from "./deploy-current-ref";
 import { waitForDeployment } from "./wait-for-deployment";
 
-core.info(`Starting Deploy to Render workflow`);
-try {
-  const config = loadConfig();
+const run = async () => {
+  core.info(`Starting Deploy to Render workflow`);
+  try {
+    const config = loadConfig();
 
-  core.info(
-    `Starting deployment of reference ${process.env.GITHUB_SHA} for service ${config.serviceId}`,
-  );
-  const deployId = await deployCurrentRef(config.apiKey, config.deployHookURL);
-  core.info(`Successfully created deployment ${deployId}`);
+    core.info(
+      `Starting deployment of reference ${process.env.GITHUB_SHA} for service ${config.serviceId}`,
+    );
+    const deployId = await deployCurrentRef(config.apiKey, config.deployHookURL);
+    core.info(`Successfully created deployment ${deployId}`);
 
-  const status = await waitForDeployment(config.apiKey, config.serviceId, deployId);
+    const status = await waitForDeployment(config.apiKey, config.serviceId, deployId);
 
-  if (status !== DeployStatus.Live) {
-    core.setFailed(`Deployment failed with status ${status}`);
+    if (status !== DeployStatus.Live) {
+      core.setFailed(`Deployment failed with status ${status}`);
+    }
+
+    core.info(`Deployment of service ${config.serviceId} completed successfully`);
+    core.setOutput("success", status !== DeployStatus.Live);
+  } catch (err) {
+    core.setFailed(`Deployment failed: ${err.message ?? err}`);
+    core.setOutput("success", false);
   }
+};
 
-  core.info(`Deployment of service ${config.serviceId} completed successfully`);
-  core.setOutput("success", status !== DeployStatus.Live);
-} catch (err) {
-  core.setFailed(`Deployment failed: ${err.message ?? err}`);
-  core.setOutput("success", false);
-}
+run();
