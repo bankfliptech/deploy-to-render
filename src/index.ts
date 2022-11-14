@@ -18,11 +18,11 @@ const run = async () => {
     const status = await waitForDeployment(config.apiKey, config.serviceId, deployId);
 
     if (status !== DeployStatus.Live) {
-      core.setFailed(`Deployment failed with status ${status}`);
+      throw new Error(`Unsuccessful deployment status: ${status}`);
     }
 
     core.info(`Deployment of service ${config.serviceId} completed successfully`);
-    core.setOutput("success", status !== DeployStatus.Live);
+    core.setOutput("success", true);
   } catch (err) {
     core.setFailed(`Deployment failed: ${err.message ?? err}`);
     core.setOutput("success", false);
