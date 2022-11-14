@@ -10,13 +10,15 @@ export enum DeployStatus {
 }
 
 export const checkDeployStatus = async (apiKey: string, serviceId: string, deployId: string) => {
-  const headers = new Headers();
-  headers.append("Authorization", `Bearer ${apiKey}`);
-  headers.append("Accept", "application/json");
-
   const result = await fetch(
     `https://api.render.com/v1/services/${serviceId}/deploys/${deployId}`,
-    { method: "GET" },
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        Accept: "application/json",
+      },
+    },
   );
   if (result.status !== 200) {
     throw new Error();

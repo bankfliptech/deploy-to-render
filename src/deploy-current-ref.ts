@@ -1,12 +1,10 @@
 export const deployCurrentRef = async (apiKey: string, deployHookURL: string) => {
-  const headers = new Headers();
-  headers.append("Authorization", `Bearer ${apiKey}`);
-  headers.append("Content-Type", "application/json");
-  headers.append("Accept", "application/json");
-
   const result = await fetch(`${deployHookURL}?ref=${process.env.GITHUB_SHA}`, {
     method: "POST",
-    headers,
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      Accept: "application/json",
+    },
   });
   if (result.status !== 200) {
     throw new Error(
