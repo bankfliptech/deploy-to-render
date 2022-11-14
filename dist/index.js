@@ -10040,7 +10040,7 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
 
 const run = () => src_awaiter(void 0, void 0, void 0, function* () {
     var _a;
-    core.info(`Starting Deploy to Render workflow v0.0.8`);
+    core.info(`Starting Deploy to Render workflow v0.0.9`);
     try {
         const config = loadConfig();
         core.info(`Starting deployment of reference ${process.env.GITHUB_SHA} for service ${config.serviceId}`);
@@ -10048,10 +10048,10 @@ const run = () => src_awaiter(void 0, void 0, void 0, function* () {
         core.info(`Successfully created deployment ${deployId}`);
         const status = yield waitForDeployment(config.apiKey, config.serviceId, deployId);
         if (status !== DeployStatus.Live) {
-            core.setFailed(`Deployment failed with status ${status}`);
+            throw new Error(`Unsuccessful deployment status: ${status}`);
         }
         core.info(`Deployment of service ${config.serviceId} completed successfully`);
-        core.setOutput("success", status !== DeployStatus.Live);
+        core.setOutput("success", true);
     }
     catch (err) {
         core.setFailed(`Deployment failed: ${(_a = err.message) !== null && _a !== void 0 ? _a : err}`);
