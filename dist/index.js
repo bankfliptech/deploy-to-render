@@ -10015,7 +10015,7 @@ const waitForDeployment = (apiKey, serviceId, deployId) => wait_for_deployment_a
         DeployStatus.UpdateInProgress,
     ];
     while (inProgressStatusCodes.includes(status)) {
-        core.info(`Waiting for deployment ${deployId} to finish processing...`);
+        core.info(`Waiting for deployment ${deployId} to finish processing... (${status})`);
         yield delay(5000);
         status = yield checkDeployStatus(apiKey, serviceId, deployId);
     }
@@ -10040,7 +10040,6 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
 
 const run = () => src_awaiter(void 0, void 0, void 0, function* () {
     var _a;
-    core.info(`Starting Deploy to Render workflow v0.0.9`);
     try {
         const config = loadConfig();
         core.info(`Starting deployment of reference ${process.env.GITHUB_SHA} for service ${config.serviceId}`);
