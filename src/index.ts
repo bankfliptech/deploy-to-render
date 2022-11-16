@@ -5,7 +5,6 @@ import { deployCurrentRef } from "./deploy-current-ref";
 import { waitForDeployment } from "./wait-for-deployment";
 
 const run = async () => {
-  core.info(`Starting Deploy to Render workflow v0.0.9`);
   try {
     const config = loadConfig();
 

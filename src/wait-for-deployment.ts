@@ -15,7 +15,7 @@ export const waitForDeployment = async (apiKey: string, serviceId: string, deplo
     DeployStatus.UpdateInProgress,
   ];
   while (inProgressStatusCodes.includes(status)) {
-    core.info(`Waiting for deployment ${deployId} to finish processing...`);
+    core.info(`Waiting for deployment ${deployId} to finish processing... (${status})`);
     await delay(5000);
     status = await checkDeployStatus(apiKey, serviceId, deployId);
   }
