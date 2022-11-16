@@ -1,4 +1,4 @@
-name: 'Render Deployment'
+name: 'Deploy to Render'
 author: 'Bankflip <tech@bankflip.io>'
 description: 'A GitHub Action to trigger and track deployment in Render'
 inputs:
@@ -17,3 +17,6 @@ outputs:
 runs:
   using: 'node16'
   main: 'dist/index.js'
+branding:
+  icon: upload-cloud
+  color: blue
