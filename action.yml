@@ -1,4 +1,4 @@
-name: 'Deploy to Render'
+name: 'Deploy to Render.com'
 author: 'Bankflip <tech@bankflip.io>'
 description: 'A GitHub Action to trigger and track deployment in Render'
 inputs:
