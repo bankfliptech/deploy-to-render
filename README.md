@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy
-        uses: bankflip/deploy-to-render@v1
+        uses: bankfliptech/deploy-to-render@v1
         with:
           serviceId: ${{ secrets.RENDER_SERVICE_ID }}
           apiKey: ${{ secrets.RENDER_API_KEY }}
