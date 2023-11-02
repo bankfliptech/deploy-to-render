@@ -9922,6 +9922,7 @@ var DeployStatus;
     DeployStatus["Created"] = "created";
     DeployStatus["BuildInProgress"] = "build_in_progress";
     DeployStatus["UpdateInProgress"] = "update_in_progress";
+    DeployStatus["PreDeployInProgress"] = "pre_deploy_in_progress";
     DeployStatus["Live"] = "live";
     DeployStatus["Deactivated"] = "deactivated";
     DeployStatus["Build_failed"] = "build_failed";
@@ -10013,6 +10014,7 @@ const waitForDeployment = (apiKey, serviceId, deployId) => wait_for_deployment_a
         DeployStatus.Created,
         DeployStatus.BuildInProgress,
         DeployStatus.UpdateInProgress,
+        DeployStatus.PreDeployInProgress,
     ];
     while (inProgressStatusCodes.includes(status)) {
         core.info(`Waiting for deployment ${deployId} to finish processing... (${status})`);
