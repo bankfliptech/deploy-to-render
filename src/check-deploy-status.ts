@@ -4,6 +4,7 @@ export enum DeployStatus {
   Created = "created",
   BuildInProgress = "build_in_progress",
   UpdateInProgress = "update_in_progress",
+  PreDeployInProgress = "pre_deploy_in_progress",
   Live = "live",
   Deactivated = "deactivated",
   Build_failed = "build_failed",

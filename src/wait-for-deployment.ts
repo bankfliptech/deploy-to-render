@@ -13,6 +13,7 @@ export const waitForDeployment = async (apiKey: string, serviceId: string, deplo
     DeployStatus.Created,
     DeployStatus.BuildInProgress,
     DeployStatus.UpdateInProgress,
+    DeployStatus.PreDeployInProgress,
   ];
   while (inProgressStatusCodes.includes(status)) {
     core.info(`Waiting for deployment ${deployId} to finish processing... (${status})`);
