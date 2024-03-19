@@ -15,7 +15,7 @@ outputs:
   success:
     description: 'A boolean indicaating if the deployment was successful or not'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
 branding:
   icon: upload-cloud
